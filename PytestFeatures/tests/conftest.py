@@ -10,13 +10,13 @@ def session_fixture():
 
 @pytest.fixture(scope="module")
 def module_fixture():
-    print(f"module_fixture setup")
+    print("module_fixture setup")
     yield
-    print(f"module_fixture teardown")
+    print("module_fixture teardown")
 
 
 @pytest.fixture
-def explicit_fixture():
-    print("explicit_fixture setup")
+def function_fixture():
+    print("function_fixture setup")
     yield
-    print("explicit_fixture teardown")
+    print("function_fixture teardown")

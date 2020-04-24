@@ -7,7 +7,7 @@ class DbConnection():
 
     def open(self):
         self.is_open = True
-        print("DB connection is open")
+        print("\nDB connection is open")
 
     def execute_query(self, query):
         if not self.is_open:
@@ -16,7 +16,7 @@ class DbConnection():
 
     def close(self):
         self.is_open = False
-        print("DB connection is closed")
+        print("\nDB connection is closed")
 
 
 @pytest.fixture
@@ -29,5 +29,4 @@ def db_connection():
 
 def test_fixture_returns_value(db_connection):
     db_connection.execute_query("SELECT * FROM dbo.Cats")
-    # Make test fail to see the output
     assert True
