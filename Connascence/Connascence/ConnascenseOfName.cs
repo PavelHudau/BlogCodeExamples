@@ -1,38 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Connascence
+namespace ConnascenceOfType
 {
-    public class Duck
+    public class ScheduleItem
     {
-        private readonly int duckIndex;
+        public string Flight { get; set; }
+        public string Origin { get; set; }
+        public string Destination { get; set; }
+        public DateTimeOffset DepartureDt { get; set; }
+        public DateTimeOffset ArrivalDt { get; set; }
 
-        public Duck(int duckIndex)
+        public string Print()
         {
-            this.duckIndex = duckIndex;
-        }
-
-        public string Quack()
-        {
-            return $"Quack : {duckIndex}";
+            // 1. We are referring properties here.
+            //    If a property name chages, we have to change it
+            //    in this line as well.
+            return $"Flight {Flight} from {Origin} on {DepartureDt} to {Destination} on {ArrivalDt}";
         }
     }
 
-    public class Farm
+    public class Itinerary
     {
-        public void AnimalsTalk()
+        // 2. If we rename ScheduleItem class we will have to change
+        //    the class name here to make code compilable.
+        // 3. We may also need to change _scheduleItems field names
+        //    to keep it consistent with the ScheduleItem class name.
+        private readonly IList<ScheduleItem> _scheduleItems;
+
+        public void Print()
         {
-            // 1. If we rename Duck class we will have to change
-            //    the class name to make code compiled.
-            // 2. We may also need to change duck1 and duck2 names
-            //    to keep it consistent with the Duck class name.
-            var duck1 = new Duck(1);
-            var duck2 = new Duck(2);
-
-            // 3. If we change Quack methind name,
-            //    this line needs to chage as well.
-            var whatWasSaid = duck1.Quack() + duck2.Quack();
-
-            Console.WriteLine(whatWasSaid);
+            foreach (var item in _scheduleItems)
+            {
+                // 4. If we change Print methond name, we will have to
+                //    change it in this line as well.   
+                Console.WriteLine(item.Print());
+            }
         }
     }
 }

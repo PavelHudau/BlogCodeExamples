@@ -1,11 +1,14 @@
-using System;
-
 namespace ConnascenceOfPosition
 {
-    public class Farm
+    public class UserFactory
     {
-        public string[] GetUser(string firstName, string lastName, string phoneNumber)
+        public string[] CreateUser(
+            string firstName,
+            string lastName,
+            string phoneNumber)
         {
+            // User is represented as an array where
+            // each element position has meening.
             return new string[] {
                 firstName,
                 lastName,
@@ -21,9 +24,12 @@ namespace ConnascenceOfPosition
         public string PhoneNumber { get; set; }
     }
 
-    public class Farm2
+    public class UserFactoryFixed
     {
-        public User GetUser(string firstName, string lastName, string phoneNumber)
+        public User CreateUser(
+            string firstName,
+            string lastName,
+            string phoneNumber)
         {
             return new User
             {

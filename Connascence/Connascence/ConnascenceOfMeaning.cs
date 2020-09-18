@@ -1,57 +1,52 @@
 using System;
+using System.Collections.Generic;
 
 namespace ConnascenceOfMeaning
 {
-    public class Duck
+    public class ScheduleItem
     {
-        private static readonly Random _rand;
-
-        public Duck(string name)
-        {
-            Name = name;
-            Location = _rand.Next(1, 4);
-        }
-
-        public string Name { get; }
-
-        public int Location { get; }
+        public string Flight { get; set; }
+        public string Origin { get; set; }
+        public string Destination { get; set; }
+        public DateTimeOffset DepartureDt { get; set; }
+        public DateTimeOffset ArrivalDt { get; set; }
     }
 
-    public class Farm
+    public class FlightBookingService
     {
-        public int FindDuck(Duck duck)
+        private static readonly Random _rand = new Random();
+
+        public string BookFlight(string flight, DateTimeOffset departureDt)
         {
-            if (GoToBarn(duck) == "SUCCESS")
+            if (_rand.NextDouble() > 0.95)
             {
-                return 1;
+                return "FAILURE";
             }
 
-            if (GoToPond(duck) == "SUCCESS")
-            {
-                return 2;
-            }
+            return "SUCCESS";
+        }
+    }
 
-            if (GoToYard(duck) == "SUCCESS")
-            {
-                return 3;
-            }
+    public class Itinerary
+    {
+        private readonly IList<ScheduleItem> _scheduleItems;
 
+        public int BookItinerary()
+        {
+            var bookingService = new FlightBookingService();
+            foreach (var scheduleItem in _scheduleItems)
+            {
+                var status = bookingService.BookFlight(
+                    scheduleItem.Flight,
+                    scheduleItem.DepartureDt);
+                // Check if BookFlight completed successfully by
+                // comparing retuned result against string value.
+                if (status != "SUCCESS")
+                {
+                    return 1;
+                }
+            }
             return 0;
-        }
-
-        private string GoToBarn(Duck duck)
-        {
-            return duck.Location == 1 ? "SUCCESS" : "NO";
-        }
-
-        private string GoToPond(Duck duck)
-        {
-            return duck.Location == 2 ? "SUCCESS" : "NO";
-        }
-
-        private string GoToYard(Duck duck)
-        {
-            return duck.Location == 3 ? "SUCCESS" : "NO";
         }
     }
 }

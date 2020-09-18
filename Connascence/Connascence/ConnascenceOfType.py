@@ -1,30 +1,32 @@
-class Duck:
-    def __init__(self, duck_index):
-        self._duck_index = duck_index
+class ScheduleItem:
+    def __init__(self):
+        self.flight = ""
+        self.origin = ""
+        self.destination = ""
+        self.departure_dt = None
+        self.arrival_dt = None
 
-    def quack(self):
-        return f"Quack : {self._duck_index}"
+    def print(self):
+        return (
+            f"Flight {self.flight} from {self.origin} on {self.departure_dt} "
+            f"to {self.destination} on {self.arrival_dt}"
+        )
 
 
-class Farm:
-    def what_duck_says(self, duck):
-        return duck.quack()
+class Itinerary:
+    def __init__(self):
+        self._schedule_items = []
 
-    def animals_talk(self):
-        # OK
-        duck_1 = Duck(1)
+    def print(self):
+        printed_schedules = []
+        for item in self._schedule_items:
+            # No error, item is added to a collection that is supposed
+            # to be a collection of strings. When code runs user will see that
+            # itinerary is not printed correctly.
+            printed_schedules.append(item)
 
-        # OK
-        # We don't have to be explicit about types,
-        # so the code below works for now. But it hides
-        # a potential problem and can turn into a "time bomb".
-        duck_2 = new Duck("2")
+            # A fix is simple, developer just forgot to call print() on an item.
+            # However the error was discovered after the code was run.
+            printed_schedules.append(item.print())
 
-        # OK
-        var what_duck_1_said = self.what_duck_says(duck_1)
-
-        # RUNTIME ERROR
-        # String is passed as argument to what_duck_says, so
-        # attribute error will be thrown on runtime, because
-        # a string does not have quack attribure
-        var whatDuck2Said = self.what_duck_says("A Duck")
+        return "\n".join(printed_schedules)

@@ -1,44 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ConnascenceOfTYpe
 {
-    public class Duck
+    public class ScheduleItem
     {
-        private readonly int duckIndex;
+        public string Flight { get; set; }
+        public string Origin { get; set; }
+        public string Destination { get; set; }
+        public DateTimeOffset DepartureDt { get; set; }
+        public DateTimeOffset ArrivalDt { get; set; }
 
-        public Duck(int duckIndex)
+        public string Print()
         {
-            this.duckIndex = duckIndex;
-        }
-
-        public string Quack()
-        {
-            return $"Quack : {duckIndex}";
+            return $"Flight {Flight} from {Origin} on {DepartureDt} to {Destination} on {ArrivalDt}";
         }
     }
 
-    public class Farm
+    public class Itinerary
     {
-        public string WhatDuckSays(Duck duck)
+        private readonly IList<ScheduleItem> _scheduleItems;
+
+        public string Print()
         {
-            return duck.Quack();
-        }
+            List<string> printedSchedules = new List<string>();
+            foreach (var item in _scheduleItems)
+            {
+                // COMPILE ERROR
+                // printedSchedules is a collection of strings, therefore we can not
+                // add ScheduleItem instance into the collection.
+                printedSchedules.Add(item);
 
-        public void AnimalsTalk()
-        {
-            // OK
-            var duck1 = new Duck(1);
+                // FIXED
+                // A fix is simple, developer just forgot to call Print() on item.
+                // Print() returns a string that can be added to printedSchedules.
+                printedSchedules.Add(item.Print());
+            }
 
-            // COMPILE ERROR
-            // Duck expects int, but string was passed
-            var duck2 = new Duck("2");
-
-            // OK
-            var whatDuck1Said = WhatDuckSays(duck1);
-
-            // COMPILE ERROR
-            // WhatDuckSays expects a Duck as argument, but string was passes.
-            var whatDuck2Said = WhatDuckSays("A Duck");
+            return string.Join(Environment.NewLine, printedSchedules);
         }
     }
 }
