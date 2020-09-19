@@ -12,7 +12,7 @@ namespace ConnascenceOfTiming
 
     public abstract class UserRepository
     {
-        public User SaveUser(string firstName, string lastName, string phoneNumber)
+        public async Task<User> SaveUser(string firstName, string lastName, string phoneNumber)
         {
             var user = new User();
             var saveUserTask = SaveUserAsync(user);
@@ -20,10 +20,10 @@ namespace ConnascenceOfTiming
             // If we do not, then saveUserTask may not be completed
             // before we attempt to load user. This may cause
             // undefined behavior or exception.
-            var savedUserId = saveUserTask.Result;
+            var savedUserId = await saveUserTask;
             // User must be saved before we attempt to load.
             var loadedUserTask = LoadUserAsync(savedUserId);
-            return loadedUserTask.Result;
+            return await loadedUserTask;
         }
 
         public abstract Task<int> SaveUserAsync(User user);

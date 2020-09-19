@@ -118,6 +118,7 @@ namespace ConnascenceOfExecutionFixed
 
     public class Barista
     {
+        // Sequence of basic steps is implemented as template method.
         public void Brew(ICoffee coffee)
         {
             Grind();
