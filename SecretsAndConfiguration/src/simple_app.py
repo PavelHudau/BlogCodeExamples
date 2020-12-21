@@ -29,7 +29,8 @@ class Repository:
                 f"{Environment.db_server()}:{Environment.db_server_port()}"
             )
         else:
-            raise Exception("Unable to build connection string due to missing configuration")
+            raise Exception("Unable to build connection string due to "
+                            "missing configuration")
 
 
 if __name__ == "__main__":
