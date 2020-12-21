@@ -5,6 +5,8 @@ WORKING_DIR="$(dirname "${BASH_SOURCE[0]}")"
 read_secret="$WORKING_DIR/../read_secret.sh"
 read_config="$WORKING_DIR/../read_config.sh"
 
+# Reading environment varaibles and passing them to
+# Python process
 DB_USERNAME=$($read_secret db_username) \
 DB_PASSWORD=$($read_secret db_password) \
 DB_SERVER=$($read_config db_server) \

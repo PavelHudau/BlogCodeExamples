@@ -1,5 +1,3 @@
-import os
-
 import src.simple_app as simple_app
 
 
