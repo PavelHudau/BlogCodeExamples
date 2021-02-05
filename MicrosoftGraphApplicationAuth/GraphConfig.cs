@@ -15,7 +15,7 @@ namespace MicrosoftGraphApplicationAuth
 
         public string ClientId => "TODO: PUT CLIENT ID HERE";
 
-        public string ApplicationSecret => "TODO: RETURN SECRET FROM HERE";
+        public string ClientSecret => "TODO: RETURN SECRET FROM HERE";
 
         public Uri Authority => new Uri(string.Format(CultureInfo.InvariantCulture, InstanceTemplate, Tenant));
 

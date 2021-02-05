@@ -13,7 +13,7 @@ namespace MicrosoftGraphApplicationAuth
             _factory = factory;
         }
 
-        public async Task<Event> CreateCalendarEvent()
+        public async Task<Event> CreateCalendarEvent(string userEmail)
         {
             IGraphServiceClient client = _factory.Create(new GraphConfig());
             var tomorrow = DateTime.Now.AddDays(1);
@@ -23,7 +23,7 @@ namespace MicrosoftGraphApplicationAuth
                 Start = DateTimeTimeZone.FromDateTime(tomorrow),
                 End = DateTimeTimeZone.FromDateTime(tomorrow.AddHours(1))
             };
-            return await client.Users["USER_ID"].Calendar.Events.Request().AddAsync(newEvvent);
+            return await client.Users[userEmail].Calendar.Events.Request().AddAsync(newEvvent);
         }
     }
 }
