@@ -192,6 +192,18 @@ namespace Exceptions
                 throw;
             }
         }
+
+        private static void SilentAllExceptions()
+        {
+            try
+            {
+                // Do something that may throw an Exception
+            }
+            catch (Exception)
+            {
+                // Do nothing
+            }
+        }
     }
 
     public class MyCustomException : Exception
