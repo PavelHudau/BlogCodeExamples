@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="FactoryMethod\" />
+    <None Remove="TheFactory\" />
+    <None Remove="PrivateFactory\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FactoryMethod\" />
+    <Folder Include="TheFactory\" />
+    <Folder Include="PrivateFactory\" />
+  </ItemGroup>
+</Project>
