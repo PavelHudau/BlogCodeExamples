@@ -8,10 +8,12 @@
     <None Remove="FactoryMethod\" />
     <None Remove="TheFactory\" />
     <None Remove="PrivateFactory\" />
+    <None Remove="AbstractFactory\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FactoryMethod\" />
     <Folder Include="TheFactory\" />
     <Folder Include="PrivateFactory\" />
+    <Folder Include="AbstractFactory\" />
   </ItemGroup>
 </Project>
