@@ -1,15 +1,15 @@
 namespace Builder;
 
-public class CofeeBuilder
+public class CoffeeBuilder
 {
     private readonly CupSize _cupSize;
     private readonly DrinkType _drinkType;
-    private double _spoonsOfSugar = 0;
-    private double _milkOz = 0;
-    private double _mapleSyrupOz = 0;
-    private double _vanillaOz = 0;
+    private double _spoonsOfSugar ;
+    private double _milkOz;
+    private double _mapleSyrupOz;
+    private double _vanillaOz;
 
-    public CofeeBuilder(CupSize cupSize, DrinkType drinkType)
+    public CoffeeBuilder(CupSize cupSize, DrinkType drinkType)
     {
         _cupSize = cupSize;
         _drinkType = drinkType;
@@ -56,6 +56,7 @@ public class CofeeBuilder
 
     private double CalculateTotalCalories()
     {
+        // Calories calculation formula.
         return 0;
     }
 }
