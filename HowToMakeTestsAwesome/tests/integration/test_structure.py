@@ -11,7 +11,7 @@ def test_user_authentication():
         # WHEN:
         user.authenticate()
         # THEN
-        assert user.is_authenticcated
+        assert user.is_authenticated
     finally:
         # CLEANUP
         repo.delete_user(user)

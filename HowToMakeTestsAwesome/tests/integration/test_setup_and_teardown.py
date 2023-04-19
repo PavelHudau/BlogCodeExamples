@@ -17,4 +17,4 @@ def tmp_user():
 
 def test_user_authentication(tmp_user: usr.User):
     tmp_user.authenticate()
-    assert tmp_user.is_authenticcated
+    assert tmp_user.is_authenticated
