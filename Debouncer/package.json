@@ -4,7 +4,7 @@
   "description": "Demo for products dashboard",
   "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && cp public/* dist && node dist/index.js",
+    "start": "tsc && cp -r public dist && node dist/index.js",
     "lint": "eslint . --ext .ts",
     "test": "test"
   },
