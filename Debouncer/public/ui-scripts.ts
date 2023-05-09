@@ -112,25 +112,45 @@ export async function onProductTileClickWithCancellationAndExponentialDelay(even
     showSlideOutProductPanel(product);
 }
 
-// Create a DeBouncer instance for each user action 
+// Create a DeBouncer instance for each user action type
 // ou would like to  De-Bounce.
 const productTileClickDeBouncer = new DeBouncer();
 
 export async function onProductTileClickWithDebBouncer(eventArgs) {
+    // Await for DeBouncer to release
     const currentToken = await productTileClickDeBouncer.debounce();
 
+    // Check if action was cancelled before it was released.
     if (currentToken.isCancelled) {
         return;
     }
 
     const product = await fetchProduct(eventArgs.productId);
-
     if (currentToken.isCancelled) {
         return;
     }
-
     showSlideOutProductPanel(product);
 }
+
+const reviewStartClickClickDeBouncer = new DeBouncer();
+const searchInputKeypressDeBouncer = new DeBouncer();
+
+async function onReviewStartClickClick() {
+    const currentToken = await reviewStartClickClickDeBouncer.debounce()
+    if (currentToken.isCancelled) {
+        return;
+    }]
+    // ... Save review rating.
+}
+
+async function onSearchInputKeypress() {
+    const currentToken = await searchInputKeypressDeBouncer.debounce();
+    if (currentToken.isCancelled) {
+        return;
+    }
+    // ... Submit search request.
+}
+
 
 interface Product {
 }
