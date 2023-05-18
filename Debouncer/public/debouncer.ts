@@ -1,7 +1,7 @@
 export class CancellationToken {
-    #isCancelled: boolean;
+    #isCancelled: boolean = false;
 
-    public get isCancelled() { return this.#isCancelled };
+    public get isCancelled(): boolean { return this.#isCancelled };
 
     public cancel(): void {
         this.#isCancelled = true;
@@ -49,8 +49,9 @@ export class DeBouncer {
         // Frequency is a difference in milliseconds between subsequent actions.
         const frequency = nowTimeInMs - this.#latestDebounceTimeMs;
         this.#latestDebounceTimeMs = nowTimeInMs;
-        const P0 = 2;
-        const k = -2.5;
+        // Adjusted to handle milliseconds to seconds conversion.
+        const P0 = 2000;
+        const k = -0.0025;
         let delayMs = Math.floor(P0 * Math.pow(Math.E, k * frequency));
         delayMs = Math.min(delayMs, this.#maxDelayMs);
         return Math.max(delayMs, this.#minDelayMs);
