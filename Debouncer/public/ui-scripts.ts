@@ -139,7 +139,7 @@ async function onReviewStartClickClick() {
     const currentToken = await reviewStartClickClickDeBouncer.debounce()
     if (currentToken.isCancelled) {
         return;
-    }]
+    }
     // ... Save review rating.
 }
 
